@@ -1,13 +1,12 @@
-import argparse
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
-from datetime import datetime
-import schedule
 import random
+from datetime import datetime
+import time
+import sys
+import schedule
 
 # Return between 5 and 54
 def rand_5_55():
@@ -104,8 +103,11 @@ def mc_feedback():
 
 
 if __name__ == "__main__":
+    startMinutes = int(sys.argv[1])
+    endMinutes = int(sys.argv[2])
+
     # Schedule delay in minutes
-    schedule.every(5).to(15).minutes.do(mc_feedback)
+    schedule.every(startMinutes).to(endMinutes).minutes.do(mc_feedback)
 
     # Wait for start time
     while NOW < START_TIME_11h_15m:
